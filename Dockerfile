@@ -1,30 +1,11 @@
-FROM ubuntu:14.04.3
-MAINTAINER Fabian Stäber, fabian@fstab.de
+FROM ubuntu:latest
+MAINTAINER Mohammad Naghavi <mohamnag@gmail.com>
 
-#####################################################################################
-# Current version is aws-cli/1.7.45 Python/2.7.6
-#####################################################################################
-
-RUN apt-get update && \
-    apt-get upgrade -y
-
-RUN apt-get install -y \
-    git \
-    ssh \
-    python \
-    python-pip \
-    python-virtualenv
-
-RUN adduser --disabled-login --gecos '' aws
-WORKDIR /home/aws
-
-USER aws
+ADD https://s3.amazonaws.com/aws-cli/awscli-bundle.zip /
 
 RUN \
-    mkdir aws && \
-    virtualenv aws/env && \
-    ./aws/env/bin/pip install awscli && \
-    echo 'source $HOME/aws/env/bin/activate' >> .bashrc && \
-    echo 'complete -C aws_completer aws' >> .bashrc
+	apt-get update && \
+	apt-get install -y python unzip git && \
+	unzip awscli-bundle.zip && \
+	/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
-USER aws
