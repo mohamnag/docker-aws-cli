@@ -9,3 +9,4 @@ RUN \
 	unzip awscli-bundle.zip && \
 	/awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 
+WORKDIR /home/aws/aws/env/bin/
