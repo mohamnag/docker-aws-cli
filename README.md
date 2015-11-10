@@ -1,5 +1,5 @@
 # docker-aws-cli
-AWS CLI dockerised.
+AWS CLI dockerised. Current version: 1.9.5
 
 Sample usage:
 ```bash
